@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Panic Button</string>
+    <string name="preferences_title">Preferences</string>
+    <string name="add_panic_button_title">New Button</string>
+    <string-array name="panic_button_type_array">
+        <item>Call</item>
+        <item>Text</item>
+    </string-array>
+    <string name="panic_button_number">(###) ###-####</string>
+    <string name="panic_button_next">Next</string>
+</resources>

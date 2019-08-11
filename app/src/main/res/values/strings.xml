@@ -16,4 +16,8 @@
     <string name="panic_button_recipient_name">Recipient Name</string>
     <string name="panic_button_done">Done</string>
     <string name="panic_button_text_message">Enter message here</string>
+    <string name="panic_button_01_name">Panic Button 01</string>
+    <string name="panic_button_02_name">Panic Button 02</string>
+    <string name="panic_button_03_name">Panic Button 03</string>
+    <string name="panic_button_04_name">Panic Button 04</string>
 </resources>

@@ -6,23 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".AddPanicButtonActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/addPanicButtonActivityTitle"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/add_panic_button_title"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/addPanicButtonTitle"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/add_panic_button_title"
-            android:textColor="#000000"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addPanicButtonActivityTitle">
 
         <EditText
             android:id="@+id/panicButtonName"
@@ -32,12 +36,27 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:hint="Panic Button Name"
-            android:inputType="textPersonName"
+            android:hint="@string/panic_button_name"
+            android:inputType="text"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addPanicButtonTitle" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/panicButtonRecipientName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/panic_button_recipient_name"
+            android:inputType="text"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/panicButtonTypeSpinner" />
 
         <Spinner
             android:id="@+id/panicButtonTypeSpinner"
@@ -59,11 +78,11 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/panic_button_number"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/panicButtonTypeSpinner" />
+            app:layout_constraintTop_toBottomOf="@+id/panicButtonRecipientName" />
 
         <Button
             android:id="@+id/panicButtonNext"
@@ -78,6 +97,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,8 +6,14 @@
         <item>Call</item>
         <item>Text</item>
     </string-array>
+    <string-array name="panic_button_call_type_array">
+        <item>Standard</item>
+        <item>Recording</item>
+    </string-array>
     <string name="panic_button_number">(###) ###-####</string>
     <string name="panic_button_next">Next</string>
     <string name="panic_button_name">Panic Button Name</string>
     <string name="panic_button_recipient_name">Recipient Name</string>
+    <string name="panic_button_done">Done</string>
+    <string name="panic_button_text_message">Enter message here</string>
 </resources>

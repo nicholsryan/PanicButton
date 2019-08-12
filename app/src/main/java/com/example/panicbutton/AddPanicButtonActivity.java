@@ -10,13 +10,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 public class AddPanicButtonActivity extends AppCompatActivity {
-    /*
-    private Spinner panicButtonTypeSpinner = (Spinner) findViewById(R.id.panicButtonTypeSpinner);
-    //private String callString = getResources().getStringArray(R.array.panic_button_type_array);
-    private String[] typeArray = getResources().getStringArray(R.array.panic_button_type_array);
-    private String callString = typeArray[0];
-    private String textString = typeArray[1];
-    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +25,19 @@ public class AddPanicButtonActivity extends AppCompatActivity {
         Globals g = (Globals) getApplication();
         Spinner panicButtonTypeSpinner;
         EditText editText;
-        
+
         String panicButtonName;
         String panicButtonPhoneNumber;
-        int panicButtonCount;
+        //int panicButtonCount;
+        int panicButtonIndex;
 
+        /*
         panicButtonCount = g.getPanicButtonCount();
         panicButtonCount++;
+        */
+
+        panicButtonIndex = g.getPanicButtonListSize();
+        panicButtonIndex++;
 
         editText = (EditText) findViewById(R.id.panicButtonName);
         panicButtonName = editText.getText().toString();
@@ -49,9 +48,12 @@ public class AddPanicButtonActivity extends AppCompatActivity {
         panicButtonTypeSpinner = (Spinner) findViewById(R.id.panicButtonTypeSpinner);
         String panicButtonType = panicButtonTypeSpinner.getSelectedItem().toString();
 
-        Button button = new Button(panicButtonCount, panicButtonName, panicButtonPhoneNumber, panicButtonType);
+        Button button = new Button(panicButtonIndex, panicButtonName, panicButtonPhoneNumber, panicButtonType);
+        g.addPanicButtonToList(button);
 
-        g.setPanicButtonCount(panicButtonCount++);
+        //g.setPanicButtonCount(panicButtonCount);
+
+        finish();
     }
 
     public void nextScreen(View view) {

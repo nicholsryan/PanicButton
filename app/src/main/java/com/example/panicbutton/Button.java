@@ -1,20 +1,20 @@
 package com.example.panicbutton;
 
 public class Button {
-    private int buttonIDNumber;
+    private int buttonIndex;    //Index of Button in panicButtonList in Globals class
     private String buttonName;
     private String buttonPhoneNumber;
     private String buttonType;
 
-    public Button(int buttonIDNumber, String buttonName, String buttonPhoneNumber, String buttonType) {
-        this.buttonIDNumber = buttonIDNumber;
+    public Button(int buttonIndex, String buttonName, String buttonPhoneNumber, String buttonType) {
+        this.buttonIndex = buttonIndex;
         this.buttonName = buttonName;
         this.buttonPhoneNumber = buttonPhoneNumber;
         this.buttonType = buttonType;
     }
 
-    public int getButtonIDNumber() {
-        return buttonIDNumber;
+    public int getButtonIndex() {
+        return buttonIndex;
     }
 
     public String getButtonName() {
@@ -29,8 +29,8 @@ public class Button {
         return buttonType;
     }
 
-    public void setButtonIDNumber(int buttonIDNumber) {
-        this.buttonIDNumber = buttonIDNumber;
+    public void setButtonIndex(int buttonIndex) {
+        this.buttonIndex = buttonIndex;
     }
 
     public void setButtonName(String buttonName) {

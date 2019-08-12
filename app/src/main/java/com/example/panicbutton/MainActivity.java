@@ -25,4 +25,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EditPreferencesActivity.class);
         startActivity(intent);
     }
+
 }

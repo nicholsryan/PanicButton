@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/panicButtonRecipientName"
+            android:id="@+id/panicButtonRecipient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -86,7 +86,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/panicButtonRecipientName" />
+            app:layout_constraintTop_toBottomOf="@+id/panicButtonRecipient" />
 
         <Button
             android:id="@+id/panicButtonNext"

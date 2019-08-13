@@ -28,6 +28,7 @@ public class AddPanicButtonActivity extends AppCompatActivity {
         EditText editText;
 
         String panicButtonName;
+        String panicButtonRecipient;
         String panicButtonPhoneNumber;
         String panicButtonType;
         //int panicButtonCount;
@@ -50,6 +51,11 @@ public class AddPanicButtonActivity extends AppCompatActivity {
 
         Log.d("NAME", "panicButtonName = " + panicButtonName);
 
+        editText = (EditText) findViewById(R.id.panicButtonRecipient);
+        panicButtonRecipient = editText.getText().toString();
+
+        Log.d("RECIPIENT", "panicButtonRecipient = " + panicButtonRecipient);
+
         editText = (EditText) findViewById(R.id.panicButtonPhoneNumber);
         panicButtonPhoneNumber = editText.getText().toString();
 
@@ -62,7 +68,7 @@ public class AddPanicButtonActivity extends AppCompatActivity {
 
         Log.d("PARAMETERS", "got parameters for Button constructor");
 
-        Button button = new Button(panicButtonIndex, panicButtonName, panicButtonPhoneNumber, panicButtonType);
+        Button button = new Button(panicButtonIndex, panicButtonName, panicButtonRecipient, panicButtonPhoneNumber, panicButtonType);
         g.addPanicButtonToList(button);
 
         Log.d("BUTTON_ADDED", "panicButton added to list");

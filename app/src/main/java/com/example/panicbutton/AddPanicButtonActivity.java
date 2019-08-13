@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -28,8 +29,11 @@ public class AddPanicButtonActivity extends AppCompatActivity {
 
         String panicButtonName;
         String panicButtonPhoneNumber;
+        String panicButtonType;
         //int panicButtonCount;
         int panicButtonIndex;
+
+        Log.d("DECLARATIONS", "createButton() declarations successful");
 
         /*
         panicButtonCount = g.getPanicButtonCount();
@@ -37,19 +41,31 @@ public class AddPanicButtonActivity extends AppCompatActivity {
         */
 
         panicButtonIndex = g.getPanicButtonListSize();
-        panicButtonIndex++;
+        //panicButtonIndex++;
+
+        Log.d("INDEX", "panicButtonIndex = " + panicButtonIndex);
 
         editText = (EditText) findViewById(R.id.panicButtonName);
         panicButtonName = editText.getText().toString();
 
+        Log.d("NAME", "panicButtonName = " + panicButtonName);
+
         editText = (EditText) findViewById(R.id.panicButtonPhoneNumber);
         panicButtonPhoneNumber = editText.getText().toString();
 
+        Log.d("PHONE_NUMBER", "panicButtonPhoneNumber = " + panicButtonPhoneNumber);
+
         panicButtonTypeSpinner = (Spinner) findViewById(R.id.panicButtonTypeSpinner);
-        String panicButtonType = panicButtonTypeSpinner.getSelectedItem().toString();
+        panicButtonType = panicButtonTypeSpinner.getSelectedItem().toString();
+
+        Log.d("TYPE", "panicButtonType = " + panicButtonType);
+
+        Log.d("PARAMETERS", "got parameters for Button constructor");
 
         Button button = new Button(panicButtonIndex, panicButtonName, panicButtonPhoneNumber, panicButtonType);
         g.addPanicButtonToList(button);
+
+        Log.d("BUTTON_ADDED", "panicButton added to list");
 
         //g.setPanicButtonCount(panicButtonCount);
 

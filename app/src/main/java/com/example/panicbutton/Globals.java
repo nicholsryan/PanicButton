@@ -1,12 +1,13 @@
 package com.example.panicbutton;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 public class Globals extends Application {
     //private int panicButtonCount = 0;
-    private ArrayList<Button> panicButtonList;
+    private ArrayList<Button> panicButtonList = new ArrayList<Button>();
 
     /*
     public int getPanicButtonCount() {
@@ -23,6 +24,7 @@ public class Globals extends Application {
     }
 
     public int getPanicButtonListSize() {
+        Log.d("SIZE", "panicButtonList.size() = " + panicButtonList.size());
         return panicButtonList.size();
     }
 }

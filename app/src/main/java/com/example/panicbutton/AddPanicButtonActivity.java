@@ -22,15 +22,17 @@ public class AddPanicButtonActivity extends AppCompatActivity {
     }
 
     public void createButton(View view) {
-        Intent intent = new Intent(this, Button.class);
+        Intent intent = new Intent(this, PanicButton.class);
         Globals g = (Globals) getApplication();
         Spinner panicButtonTypeSpinner;
         EditText editText;
-
+        
+        PanicButton panicButton;
         String panicButtonName;
         String panicButtonRecipient;
         String panicButtonPhoneNumber;
         String panicButtonType;
+        String panicButtonMsg;
         //int panicButtonCount;
         int panicButtonIndex;
 
@@ -43,33 +45,37 @@ public class AddPanicButtonActivity extends AppCompatActivity {
 
         panicButtonIndex = g.getPanicButtonListSize();
         //panicButtonIndex++;
-
         Log.d("INDEX", "panicButtonIndex = " + panicButtonIndex);
 
         editText = (EditText) findViewById(R.id.panicButtonName);
         panicButtonName = editText.getText().toString();
-
         Log.d("NAME", "panicButtonName = " + panicButtonName);
 
         editText = (EditText) findViewById(R.id.panicButtonRecipient);
         panicButtonRecipient = editText.getText().toString();
-
         Log.d("RECIPIENT", "panicButtonRecipient = " + panicButtonRecipient);
 
         editText = (EditText) findViewById(R.id.panicButtonPhoneNumber);
         panicButtonPhoneNumber = editText.getText().toString();
-
         Log.d("PHONE_NUMBER", "panicButtonPhoneNumber = " + panicButtonPhoneNumber);
 
         panicButtonTypeSpinner = (Spinner) findViewById(R.id.panicButtonTypeSpinner);
         panicButtonType = panicButtonTypeSpinner.getSelectedItem().toString();
-
         Log.d("TYPE", "panicButtonType = " + panicButtonType);
-
-        Log.d("PARAMETERS", "got parameters for Button constructor");
-
-        Button button = new Button(panicButtonIndex, panicButtonName, panicButtonRecipient, panicButtonPhoneNumber, panicButtonType);
-        g.addPanicButtonToList(button);
+        
+        editText = (EditText) findViewById(R.id.textButtonMessage);
+        panicButtonMsg = editText.getText().toString();
+        Log.d("MESSAGE", "panicButtonMsg = " + panicButtonMsg);
+        
+        Log.d("PARAMETERS", "got parameters for PanicButton constructor");
+        
+        if (panicButtonType.equals("Call")) {
+            panicButton = new PanicButton(panicButtonIndex, panicButtonName, panicButtonRecipient, panicButtonPhoneNumber, panicButtonType);
+        } else {
+            panicButton = new PanicButton(panicButtonIndex, panicButtonName, panicButtonRecipient, panicButtonPhoneNumber, panicButtonType, panicButtonMsg);
+        }
+        
+        g.addPanicButtonToList(panicButton);
 
         Log.d("BUTTON_ADDED", "panicButton added to list");
 

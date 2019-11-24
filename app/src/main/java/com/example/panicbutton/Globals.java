@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Globals extends Application {
     //private int panicButtonCount = 0;
-    private ArrayList<Button> panicButtonList = new ArrayList<Button>();
+    private ArrayList<PanicButton> panicButtonList = new ArrayList<PanicButton>();
 
     /*
     public int getPanicButtonCount() {
@@ -19,8 +19,22 @@ public class Globals extends Application {
     }
     */
 
-    public void addPanicButtonToList(Button button) {
-        panicButtonList.add(button);
+    public void addPanicButtonToList(PanicButton panicButton) {
+        panicButtonList.add(panicButton);
+    }
+    
+    public ArrayList<PanicButton> getPanicButtonList() {
+        return panicButtonList;
+    }
+    
+    public PanicButton getPanicButton(int buttonIndex) {
+        for (PanicButton panicButton : panicButtonList) {
+            if (panicButton.getPanicButtonIndex() == buttonIndex) {
+                return panicButton;
+            }
+        }
+        
+        return null;
     }
 
     public int getPanicButtonListSize() {

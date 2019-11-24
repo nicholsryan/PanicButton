@@ -2,14 +2,6 @@
     <string name="app_name">Panic Button</string>
     <string name="preferences_title">Preferences</string>
     <string name="add_panic_button_title">New Button</string>
-    <string-array name="panic_button_type_array">
-        <item>Call</item>
-        <item>Text</item>
-    </string-array>
-    <string-array name="panic_button_call_type_array">
-        <item>Standard</item>
-        <item>Recording</item>
-    </string-array>
     <string name="panic_button_number">(###) ###-####</string>
     <string name="panic_button_next">Next</string>
     <string name="panic_button_name">Panic Button Name</string>
@@ -20,4 +12,19 @@
     <string name="panic_button_02_name">Panic Button 02</string>
     <string name="panic_button_03_name">Panic Button 03</string>
     <string name="panic_button_04_name">Panic Button 04</string>
+    <string name="pressed_button_name">Panic Button</string>
+    <string name="pressed_button_recipient">Recipient</string>
+    <string name="pressed_button_phone_number">(###) ###-####</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="panic_button_type_array">
+        <item>Call</item>
+        <item>Text</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="panic_button_call_type_array">
+        <item>Standard</item>
+        <item>Recording</item>
+    </string-array>
+    <string name="confirm_button_text">Confirm</string>
 </resources>

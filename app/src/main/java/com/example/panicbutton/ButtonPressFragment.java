@@ -23,13 +23,12 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ButtonPressFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class ButtonPressFragment extends Fragment
+        implements ActivityCompat.OnRequestPermissionsResultCallback {
     
     private static final String ARG_BUTTON_INDEX = "button_index";
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 2;
-    
-    
     
     private PanicButton panicButton;
     private String panicButtonName;
@@ -42,40 +41,24 @@ public class ButtonPressFragment extends Fragment implements ActivityCompat.OnRe
     private String panicButtonMsg;
     private Button confirmButton;
     
-    /*
-    public ButtonPressFragment() {
-        // Required empty public constructor
-    }
-    */
     
     public static ButtonPressFragment newInstance(int buttonIndex) {
-        Log.d("BUTTONPRESSFRAGMENT", "beginning of newInstance()");
         Bundle args = new Bundle();
-        Log.d("BUTTONPRESSFRAGMENT", "after creating new Bundle");
         args.putSerializable(ARG_BUTTON_INDEX, buttonIndex);
         
-        Log.d("BUTTONPRESSFRAGMENT", "after args.putSerializable()");
-        
         ButtonPressFragment fragment = new ButtonPressFragment();
-        Log.d("BUTTONPRESSFRAGMENT", "after creating new ButtonPressFragment");
         fragment.setArguments(args);
-        Log.d("BUTTONPRESSFRAGMENT", "after fragment.setArguments()");
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d("BUTTONPRESSFRAGMENT", "beginning of onCreate()");
         super.onCreate(savedInstanceState);
-        Log.d("BUTTONPRESSFRAGMENT", "after super.onCreate()");
 
         Globals g = (Globals) getActivity().getApplication();
-        Log.d("BUTTONPRESSFRAGMENT", "after setting Globals instance g");
         
-        int buttonIndex = (int) getArguments().getSerializable(ARG_BUTTON_INDEX);
-        Log.d("BUTTONPRESSFRAGMENT", "after setting buttonIndex via getSerializable()");
-        panicButton = g.getPanicButton(buttonIndex);
-        Log.d("BUTTONPRESSFRAGMENT", "after getPanicButton");
+        int paniButtonIndex = (int) getArguments().getSerializable(ARG_BUTTON_INDEX);
+        panicButton = g.getPanicButton(paniButtonIndex);
         
         return;
     }
@@ -87,53 +70,44 @@ public class ButtonPressFragment extends Fragment implements ActivityCompat.OnRe
         View.OnClickListener confirmListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast confirmToast;
-                confirmToast = Toast.makeText(getActivity(), "CONFIRM " + panicButtonType, Toast.LENGTH_SHORT);
-                confirmToast.show();
+                
+                String[] typeArray = getResources().getStringArray(R.array.panic_button_type_array);
+                String callString = typeArray[0];
+                String textString = typeArray[1];
 
-                if (panicButtonType.equals("Call")) {
-                    //confirmToast.show();
-                    
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    Log.d("BUTTONPRESSFRAGMENT", "after creating callIntent");
-                    callIntent.setData(Uri.parse("tel:+1-336-416-5446"));
-                    Log.d("BUTTONPRESSFRAGMENT", "after setting callIntent number");
-                    
-                    //int callPhonePermission = ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.CALL_PHONE);
-                    //Log.d("BUTTONPRESSFRAGMENT", "Manifest.permission.CALL_PHONE = \"" + callPhonePermission + "\"");
-                    
-                    //May need to change ActivityCompat to ContextCompat
-                    if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                if (panicButtonType.equals(callString)) {
+                    if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                            Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.CALL_PHONE},
+                                MY_PERMISSIONS_REQUEST_CALL_PHONE);
                         return;
                     }
                     else {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse(panicButtonPhoneNumber));
                         makeCall(callIntent);
-                        //startActivity(callIntent);
-                        //Log.d("BUTTONPRESSFRAGMENT", "after startActivity()");
                     }
-                    
                 }
-                else if (panicButtonType.equals("Text")) {
-                    if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, MY_PERMISSIONS_REQUEST_SEND_SMS);
+                else if (panicButtonType.equals(textString)) {
+                    if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(),
+                            Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.SEND_SMS},
+                                MY_PERMISSIONS_REQUEST_SEND_SMS);
                         return;
                     }
                     else {
-                        //Intent textIntent = new Intent(Intent.)
-                        sendSMS();
+                        Uri uri = Uri.parse(panicButtonPhoneNumber);
+                        Intent textIntent = new Intent(Intent.ACTION_SENDTO, uri);
+                        textIntent.putExtra("sms_body", panicButtonMsg);
+                        sendSMS(textIntent);
+//                        sendSMS();  //Send SMS without opening default SMS app
                     }
                 }
                 return;
             }
         };
-        
-        /*
-        PanicButton panicButton;
-        TextView panicButtonNameTextView;
-        TextView panicButtonRecipientTextView;
-        TextView panicButtonPhoneNumberTextView;
-        */
         
         panicButtonNameTextView = (TextView) view.findViewById(R.id.pressedButtonName);
         panicButtonRecipientTextView = (TextView) view.findViewById(R.id.pressedButtonRecipient);
@@ -188,12 +162,19 @@ public class ButtonPressFragment extends Fragment implements ActivityCompat.OnRe
         return;
     }
     
+    //Send SMS without opening default SMS app
     public void sendSMS() {
         SmsManager sm = SmsManager.getDefault();
         sm.sendTextMessage(panicButtonPhoneNumber, null, panicButtonMsg, null, null);
         Log.d("BUTTONPRESSFRAGMENT", "sendSMS(): after sendTextMessage()");
         Log.d("BUTTONPRESSFRAGMENT", "sendSMS(): panicButtonMsg = \"" + panicButtonMsg + "\"");
         return;
+    }
+    
+    //Send SMS by opening default SMS app
+    public void sendSMS(Intent textIntent) {
+        startActivity(textIntent);
+        Log.d("BUTTONPRESSFRAGMENT", "sendSMS(): panicButtonMsg = \"" + panicButtonMsg + "\"");
     }
     
 }

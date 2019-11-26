@@ -26,5 +26,11 @@
         <item>Standard</item>
         <item>Recording</item>
     </string-array>
+
+    <string-array name="language_preference_array">
+        <item>English</item>
+        <item>Espa&#241;ol</item>
+    </string-array>
+    
     <string name="confirm_button_text">Confirm</string>
 </resources>

@@ -3,7 +3,9 @@ package com.example.panicbutton;
 public class PanicButton {
     
     //Number for Shining Rock (development device)
-    private static final String SHINING_ROCK_PHONE_NUMBER = "tel:+1-336-416-5446";
+    private static final String SHINING_ROCK_PHONE_NUMBER_CALL = "tel:+1-336-416-5446";
+    private static final String SHINING_ROCK_PHONE_NUMBER_TEXT = "sms:+1-336-416-5446";
+    
     
     private int panicButtonIndex;    //Index of PanicButton in panicButtonList in Globals class
     private String panicButtonName;
@@ -12,23 +14,33 @@ public class PanicButton {
     private String panicButtonType;
     private String panicButtonMsg;
 
-    public PanicButton(int buttonIndex, String buttonName, String buttonRecipient, String buttonPhoneNumber, String buttonType) {
-        this.panicButtonIndex = buttonIndex;
-        this.panicButtonName = buttonName;
-        this.panicButtonRecipient = buttonRecipient;
-//        this.panicButtonPhoneNumber = buttonPhoneNumber;
-        this.panicButtonPhoneNumber = SHINING_ROCK_PHONE_NUMBER;
-        this.panicButtonType = buttonType;
+    public PanicButton(int panicButtonIndex, String panicButtonName, String panicButtonRecipient,
+                       String panicButtonPhoneNumber, String panicButtonType) {
+        this.panicButtonIndex = panicButtonIndex;
+        this.panicButtonName = panicButtonName;
+        this.panicButtonRecipient = panicButtonRecipient;
+        this.panicButtonPhoneNumber = "tel:" + panicButtonPhoneNumber;
+//        this.panicButtonPhoneNumber = SHINING_ROCK_PHONE_NUMBER_CALL;
+        this.panicButtonType = panicButtonType;
     }
 
-    public PanicButton(int buttonIndex, String buttonName, String buttonRecipient, String buttonPhoneNumber, String buttonType, String buttonMsg) {
-        this.panicButtonIndex = buttonIndex;
-        this.panicButtonName = buttonName;
-        this.panicButtonRecipient = buttonRecipient;
-//        this.panicButtonPhoneNumber = buttonPhoneNumber;
-        this.panicButtonPhoneNumber = SHINING_ROCK_PHONE_NUMBER;
-        this.panicButtonType = buttonType;
-        this.panicButtonMsg = buttonMsg;
+    public PanicButton(int panicButtonIndex, String panicButtonName, String panicButtonRecipient,
+                       String panicButtonPhoneNumber, String panicButtonType, String panicButtonMsg) {
+        this.panicButtonIndex = panicButtonIndex;
+        this.panicButtonName = panicButtonName;
+        this.panicButtonRecipient = panicButtonRecipient;
+        
+        if (panicButtonType.equals("Call")) {
+            this.panicButtonPhoneNumber = "tel:" + panicButtonPhoneNumber;
+//            this.panicButtonPhoneNumber = SHINING_ROCK_PHONE_NUMBER_CALL;
+        }
+        else {
+            this.panicButtonPhoneNumber = "sms:" + panicButtonPhoneNumber;
+//            this.panicButtonPhoneNumber = SHINING_ROCK_PHONE_NUMBER_TEXT;
+        }
+        
+        this.panicButtonType = panicButtonType;
+        this.panicButtonMsg = panicButtonMsg;
     }
 
     public int getPanicButtonIndex() {

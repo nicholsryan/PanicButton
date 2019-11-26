@@ -67,12 +67,9 @@ public class MainActivity extends AppCompatActivity {
         
         @Override
         public void onClick(View view) {
-            Log.d("BUTTONHOLDER", "ButtonHolder.onClick(): beginning of onClick()");
             Intent intent = ButtonPressActivity.newIntent(getApplicationContext(),
                     panicButton.getPanicButtonIndex());
-            Log.d("BUTTONHOLDER", "ButtonHolder.onClick(): after newIntent()");
             startActivity(intent);
-            Log.d("BUTTONHOLDER", "ButtonHolder.onClick(): after startActivity()");
         }
     }
     
@@ -103,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*Called when the user taps the "Add" panicButton*/
+    /*Called when the user taps the "Add" button*/
     public void addPanicButton(View view) {
         Intent intent = new Intent(this, AddPanicButtonActivity.class);
         startActivity(intent);
     }
 
-    /*Called when the user taps the "Preferences" panicButton*/
+    /*Called when the user taps the "Preferences" button*/
     public void editPreferences(View view) {
         Intent intent = new Intent(this, EditPreferencesActivity.class);
         startActivity(intent);
